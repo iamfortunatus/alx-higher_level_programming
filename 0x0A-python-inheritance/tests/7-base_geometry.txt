@@ -1,31 +1,45 @@
-============================================
-How to use 7-base_geometry.py
-============================================
+================================
+Module 'Base geometry'
+----------------------------
+Importing the function from the module:
+    >>> Basegeo = __import__("7-base_geometry").BaseGeometry
 
-This library is very simple, since it only has one function called
- ''integer_validator()''.
 
-Numbers:
-========
-''integer_validator()'' returns True if a num is integer.
-:: with positives integers
-   >>> BaseGeometry = __import__('7-base_geometry').BaseGeometry
-   >>> bg = BaseGeometry()
+Test module docstring:
+    >>> m = __import__("7-base_geometry").__doc__
+    >>> len(m) > 1
+    True
 
-:: with positive integer
-   >>> bg.integer_validator("my_int", 12)
+Test class docstring:
+    >>> c = __import__("7-base_geometry").BaseGeometry.__doc__
+    >>> len(c) > 1
+    True
 
-:: with negative integer
-   >>> bg.integer_validator("number", -12)
-   Traceback (most recent call last):
-   ValueError: number must be greater than 0
+Test methods docstring:
+	>>> area = __import__("7-base_geometry").BaseGeometry.area.__doc__
+	>>> len(area) > 1
+	True
+	>>> int_val = __import__("7-base_geometry").BaseGeometry.integer_validator.__doc__
+    >>> len(int_val) > 1
+    True
 
-:: with 3 arguments
-   >>> bg.integer_validator("numbers", 0, 1)
-   Traceback (most recent call last):
-   TypeError: integer_validator() takes 3 positional arguments but 4 were given
+Test area Exception:
+	>>> b = Basegeo()
+	>>> b.area()
+	Traceback (most recent call last):
+	 ...
+	Exception: area() is not implemented
 
-:: with infinite integer
-   >>> bg.integer_validator("infnumber", int('inf'))
-   Traceback (most recent call last):
-   ValueError: invalid literal for int() with base 10: 'inf'
+Test integer <= 0:
+    >>> b.integer_validator("Wrong!", -33)
+    Traceback (most recent call last):
+    ...
+    ValueError: Wrong! must be greater than 0
+
+Test no arguments to integer_validator:
+	>>> b.integer_validator()
+	Traceback (most recent call last):
+	TypeError: integer_validator() missing 2 required positional arguments: 'name' and 'value'
+
+Test passing valide value to integer_validator:
+    >>> b.integer_validator("Right!", 1)

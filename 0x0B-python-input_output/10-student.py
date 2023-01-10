@@ -1,23 +1,28 @@
 #!/usr/bin/python3
-"""json"""
+"""
+student class
+"""
 
 
 class Student:
-    """A student."""
-
+    """defines student"""
     def __init__(self, first_name, last_name, age):
         self.first_name = first_name
         self.last_name = last_name
         self.age = age
 
     def to_json(self, attrs=None):
-        """Retrieve a dictionary representation of a Student instance."""
-        if attrs is not None and all(isinstance(x, str) for x in attrs):
-            d = {}
-            for k, v in self.__dict__.items():
-                if k in attrs:
-                    d[k] = v
-            return d
-        else:
-            return self.__dict__
+        """returns dictionary desc"""
+        rep_dic = self.__dict__
+        new_dic = dict()
 
+        if type(attrs) is list:
+            for attr in attrs:
+                if type(attr) is not str:
+                    return rep_dic
+
+                if attr in rep_dic:
+                    new_dic[attr] = rep_dic[attr]
+            return new_dic
+
+        return 

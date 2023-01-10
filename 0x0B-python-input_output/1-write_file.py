@@ -1,5 +1,11 @@
 #!/usr/bin/python3
-write_file = __import__('1-write_file').write_file
+"""
+Contains write_file() function
+"""
 
-nb_characters = write_file("my_first_file.txt", "This School is so cool!\n")
-print(nb_characters)
+
+def write_file(filename="", text=""):
+    """writes a string to a text file (UTF8)
+     and returns the number of characters written"""
+    with open(filename, "w", encoding="UTF8") as f:
+        return f.write(text)

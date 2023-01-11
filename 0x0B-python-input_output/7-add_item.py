@@ -1,17 +1,15 @@
 #!/usr/bin/python3
-"""
-script to save and load
-"""
+import random
 import sys
+from time import sleep
+import datetime
 
-save_json = __import__('5-save_to_json_file').save_to_json_file
-load_json = __import__('6-load_from_json_file').load_from_json_file
-
-file = "add_item.json"
-try:
-    new = load_json(file)
-except (ValueError, FileNotFoundError):
-    new = []
-for args in sys.argv[1:]:
-    new.append(args)
-save_json(new, file)
+for i in range(10000):
+    sleep(random.random())
+    sys.stdout.write("{:d}.{:d}.{:d}.{:d} - [{}] \"GET /projects/260 HTTP/1.1\" {} {}\n".format(
+        random.randint(1, 255), random.randint(1, 255), random.randint(1, 255), random.randint(1, 255),
+        datetime.datetime.now(),
+        random.choice([200, 301, 400, 401, 403, 404, 405, 500]),
+        random.randint(1, 1024)
+    ))
+    sys.stdout.flush()

@@ -1,11 +1,10 @@
 #!/usr/bin/python3
-"""
-Python script that fetches an URL with requests package
-"""
-import requests
+"""fetches https://intranet.hbtn.io/status with requests"""
+from requests import get
 
 
-if __name__ == "__main__":
-    r = requests.get('https://intranet.hbtn.io/status')
-    t = r.text
-    print('Body response:\n\t- type: {}\n\t- content: {}'.format(type(t), t))
+if __name__ == '__main__':
+    url = get('https://intranet.hbtn.io/status')
+    print("Body response:")
+    print("\t- type: {}".format(type(url.text)))
+    print("\t- content: {}".format(url.content.decode('utf-8')))
